@@ -1,7 +1,14 @@
-language: java
-
 services:
   - docker
 
-before_install:
-- docker -cache-from pull bitriseio/docker-android
+cache:
+  directories:
+    - docker-cache
+
+before_script:
+  - |
+    filename=docker-cache/saved_images.tar
+    if [[ -f "$filename" ]]; then docker load < "$filename"; fi
+    mkdir -p docker-cache
+    docker pull bitriseio/docker-android
+    docker save -o "$filename" bitriseio/docker-android
