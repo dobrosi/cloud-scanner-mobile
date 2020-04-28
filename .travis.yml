@@ -12,3 +12,6 @@ before_script:
     mkdir -p docker-cache
     docker pull bitriseio/docker-android
     docker save -o "$filename" bitriseio/docker-android
+
+script:
+ - docker run bitriseio/docker-android
