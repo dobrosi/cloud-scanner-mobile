@@ -7,4 +7,4 @@ before_script:
 install:
  - alias hello='docker run hello-world'
 script:
- - hello
+ - docker run hello-world
