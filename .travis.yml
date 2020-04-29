@@ -1,15 +1,8 @@
 services:
   - docker
 
-cache:
-  directories:
-    - docker-cache
-
 before_script:
- - docker pull bitriseio/docker-android
+ - docker pull hello-world
 
 script:
- - docker run bitriseio/docker-android
- - alias cordova='docker run -it --rm --privileged -v /dev/bus/usb:/dev/bus/usb -v $PWD:/bitrise/src bitriseio/docker-android:latest cordova'
- - cordova create hello
- - cordova build
+ - alias hello = 'docker run hello-world'
