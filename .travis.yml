@@ -4,5 +4,7 @@ services:
 before_script:
  - docker pull hello-world
 
+install:
+ - alias hello='docker run hello-world'
 script:
- - alias hello = 'docker run hello-world'
+ - hello
