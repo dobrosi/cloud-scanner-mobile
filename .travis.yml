@@ -6,12 +6,10 @@ cache:
     - docker-cache
 
 before_script:
-  - |
-    filename=docker-cache/saved_images.tar
-    if [[ -f "$filename" ]]; then docker load < "$filename"; fi
-    mkdir -p docker-cache
-    docker pull bitriseio/docker-android
-    docker save -o "$filename" bitriseio/docker-android
+ - docker pull bitriseio/docker-android
 
 script:
  - docker run bitriseio/docker-android
+ - cordova='docker run -it --rm --privileged -v /dev/bus/usb:/dev/bus/usb -v $PWD:/bitrise/src bitriseio/docker-android:latest cordova'
+ - cordova create hello
+ - cordova build
